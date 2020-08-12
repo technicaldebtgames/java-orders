@@ -1,4 +1,10 @@
 DELETE
+FROM orderspayments;
+
+DELETE
+FROM payments;
+
+DELETE
 FROM orders;
 
 DELETE
