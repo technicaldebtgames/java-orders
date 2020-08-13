@@ -9,4 +9,6 @@ public interface OrderService
 
     Order save(Order order);
 
+    void delete(long id);
+
 }

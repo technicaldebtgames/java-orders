@@ -8,6 +8,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "customers")
+@JsonIgnoreProperties({"hasvalueforgrade",
+                       "hasvalueforopeningamt",
+                       "hasvalueforreceiveamt",
+                       "hasvalueforpaymentamt",
+                       "hasvalueforoutstandingamt"})
 public class Customer
 {
 
@@ -30,18 +35,28 @@ public class Customer
 
     @Column(nullable = false)
     private char grade;
+    @Transient // this is not supposed to go in the db, so label as transient (only used in customer object)
+    public boolean hasvalueforgrade = false;
 
     @Column(nullable = false)
     private double openingamt;
+    @Transient
+    public boolean hasvalueforopeningamt = false;
 
     @Column(nullable = false)
     private double receiveamt;
+    @Transient
+    public boolean hasvalueforreceiveamt = false;
 
     @Column(nullable = false)
     private double paymentamt;
+    @Transient
+    public boolean hasvalueforpaymentamt = false;
 
     @Column(nullable = false)
     private double outstandingamt;
+    @Transient
+    public boolean hasvalueforoutstandingamt = false;
 
     @Column(nullable = false)
     private String phone;
@@ -144,6 +159,7 @@ public class Customer
 
     public void setGrade(char grade)
     {
+        this.hasvalueforgrade = true;
         this.grade = grade;
     }
 
@@ -154,6 +170,7 @@ public class Customer
 
     public void setOpeningamt(double openingamt)
     {
+        this.hasvalueforopeningamt = true;
         this.openingamt = openingamt;
     }
 
@@ -164,6 +181,7 @@ public class Customer
 
     public void setReceiveamt(double receiveamt)
     {
+        this.hasvalueforreceiveamt = true;
         this.receiveamt = receiveamt;
     }
 
@@ -174,6 +192,7 @@ public class Customer
 
     public void setPaymentamt(double paymentamt)
     {
+        this.hasvalueforpaymentamt = true;
         this.paymentamt = paymentamt;
     }
 
@@ -184,6 +203,7 @@ public class Customer
 
     public void setOutstandingamt(double outstandingamt)
     {
+        this.hasvalueforoutstandingamt = true;
         this.outstandingamt = outstandingamt;
     }
 
